@@ -1,76 +1,16 @@
-# CHAKRAVYUH — Database + Cross-Case Correlation Module
+# React + Vite
 
-This module (Member 4) provides the database layer and cross-case wallet
-correlation logic for CHAKRAVYUH, a cryptocurrency fraud investigation
-platform built for Smart India Hackathon.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Responsibilities
+Currently, two official plugins are available:
 
-- Database setup (SQLAlchemy 2.x + SQLite for MVP)
-- Six core tables: `cases`, `transactions`, `wallets_in_trail`,
-  `past_cases`, `known_entities`, `flags`
-- Fictional demo data seeding
-- Cross-case wallet overlap correlation (`backend/services/correlation.py`)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## Tech Stack
+## React Compiler
 
-- Python 3.11+
-- FastAPI
-- SQLAlchemy 2.x (typed `Mapped` / `mapped_column` style)
-- SQLite (MVP)
-- Pydantic v2 (schemas)
-- Pytest
-- Ruff (linting/formatting)
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Project Structure
+## Expanding the ESLint configuration
 
-
-## Setup
-
-```bash
-python -m venv venv
-venv\Scripts\activate          # Windows
-pip install -r requirements.txt
-```
-
-## Seed the database
-
-```bash
-python -m backend.seed.seed_data
-```
-
-This creates `chakravyuh.db` with fictional demo cases, including a
-wallet shared across two active cases, a wallet matching a past closed
-case, and a wallet flagged as a known mixer — so correlation logic can
-be demonstrated end-to-end.
-
-## Run tests
-
-```bash
-pytest
-```
-
-## Run the API (optional, for local testing)
-
-```bash
-uvicorn backend.main:app --reload
-```
-
-Visit `http://127.0.0.1:8000/docs` for the interactive API docs.
-
-## Correlation Logic
-
-`backend/services/correlation.py` exposes:
-
-- `correlate_wallet(db, wallet_address, exclude_case_id=None)` — checks
-  a single wallet against active cases, past cases, and known entities.
-- `correlate_case(db, case_id)` — runs correlation for every wallet in
-  a case's trail.
-
-## Out of Scope (handled by other members)
-
-- Frontend
-- Authentication
-- Blockchain API integration / live wallet tracing
-- ML-based risk scoring
-- Report generation
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

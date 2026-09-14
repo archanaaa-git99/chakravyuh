@@ -1,0 +1,1297 @@
+/* =========================================================
+   CHAKRAVYUH — FRONTEND DESIGN SYSTEM
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #05070a;
+  color: #f4f7fb;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   LANDING PAGE
+   ========================================================= */
+
+.landing-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255, 55, 45, 0.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      180deg,
+      #070a0f 0%,
+      #05070a 55%,
+      #020304 100%
+    );
+
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* subtle investigation grid */
+
+.landing-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  pointer-events: none;
+}
+
+
+/* red glow */
+
+.landing-page::after {
+  content: "";
+
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  left: 50%;
+  top: 45%;
+
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 59, 48, 0.09),
+    transparent 65%
+  );
+
+  filter: blur(20px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.landing-header {
+  position: relative;
+  z-index: 2;
+
+  height: 76px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 42px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(3, 5, 8, 0.75);
+
+  backdrop-filter: blur(12px);
+}
+
+.landing-logo {
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.landing-system {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #718096;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero-section {
+  position: relative;
+  z-index: 2;
+
+  min-height: calc(100vh - 76px);
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 60px 25px 100px;
+}
+
+
+/* small red label */
+
+.hero-eyebrow {
+  margin-bottom: 24px;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 5px;
+
+  color: #ff4b43;
+}
+
+
+/* main title */
+
+.hero-section h1 {
+  margin: 0;
+
+  max-width: 1100px;
+
+  font-size: clamp(55px, 7.5vw, 115px);
+
+  line-height: 0.88;
+
+  font-weight: 950;
+
+  letter-spacing: -5px;
+
+  text-transform: uppercase;
+
+  color: #f4f7fb;
+}
+
+.hero-section h1 span {
+  color: #ff3b32;
+
+  text-shadow:
+    0 0 30px rgba(255, 59, 48, 0.12);
+}
+
+
+/* description */
+
+.hero-description {
+  max-width: 780px;
+
+  margin-top: 42px;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+
+  color: #8ea1ba;
+}
+
+
+/* =========================================================
+   WALLET INPUT
+   ========================================================= */
+
+.wallet-form {
+  width: min(760px, 90vw);
+
+  margin-top: 45px;
+
+  display: flex;
+
+  padding: 6px;
+
+  border: 1px solid #273343;
+
+  border-radius: 12px;
+
+  background: rgba(12, 17, 24, 0.9);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.015),
+    0 15px 50px rgba(0, 0, 0, 0.35);
+
+  transition: 0.25s ease;
+}
+
+.wallet-form:focus-within {
+  border-color: #ff3b32;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 59, 48, 0.15),
+    0 15px 60px rgba(0, 0, 0, 0.45);
+}
+
+.wallet-form input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 60px;
+
+  padding: 0 20px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #f5f7fa;
+
+  font-family: monospace;
+
+  font-size: 15px;
+}
+
+.wallet-form input::placeholder {
+  color: #526174;
+}
+
+
+/* investigate button */
+
+.wallet-form button {
+  height: 60px;
+
+  padding: 0 30px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #ff3b32;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.wallet-form button:hover {
+  background: #ff5149;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 25px rgba(255, 59, 48, 0.25);
+}
+
+.wallet-form button:active {
+  transform: translateY(0);
+}
+
+
+/* hint */
+
+.hero-hint {
+  margin-top: 16px;
+
+  font-size: 12px;
+
+  color: #526174;
+}
+
+
+/* error */
+
+.error-message {
+  margin-top: 15px;
+
+  color: #ff5a52;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LOADING PAGE
+   ========================================================= */
+
+.loading-page {
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 59, 48, 0.08),
+      transparent 45%
+    ),
+    #05070a;
+}
+
+.loading-container {
+  width: min(700px, 92vw);
+
+  padding: 50px;
+
+  border: 1px solid #273343;
+
+  border-radius: 18px;
+
+  background: rgba(10, 15, 21, 0.92);
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.45);
+}
+
+.loading-label {
+  color: #ff4b43;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 4px;
+}
+
+.loading-container h1 {
+  margin-top: 20px;
+
+  font-size: 42px;
+
+  letter-spacing: -1px;
+}
+
+.loading-wallet {
+  margin-top: 10px;
+
+  color: #718096;
+
+  font-family: monospace;
+
+  word-break: break-all;
+}
+
+
+/* progress */
+
+.progress-container {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 35px;
+}
+
+.progress-bar {
+  flex: 1;
+
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #1a222d;
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: 20px;
+
+  background: #ff3b32;
+
+  transition: width 0.2s ease;
+}
+
+.progress-number {
+  width: 45px;
+
+  font-family: monospace;
+
+  color: #ff5149;
+
+  font-weight: 700;
+}
+
+
+/* analysis steps */
+
+.analysis-steps {
+  margin-top: 35px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.step {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  color: #3f4d5f;
+
+  font-size: 14px;
+
+  transition: 0.3s ease;
+}
+
+.step span {
+  width: 28px;
+
+  color: #374354;
+
+  font-family: monospace;
+}
+
+.step.active {
+  color: #dbe2ea;
+}
+
+.step.active span {
+  color: #ff4b43;
+}
+
+.loading-warning {
+  margin-top: 35px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #1d2733;
+
+  color: #59687b;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.dashboard-page {
+  min-height: 100vh;
+
+  padding: 0 4vw 70px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 59, 48, 0.035),
+      transparent 30%
+    ),
+    #05070a;
+}
+
+
+/* =========================================================
+   DASHBOARD HEADER
+   ========================================================= */
+
+.dashboard-header {
+  min-height: 80px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #1b2530;
+}
+
+.dashboard-brand {
+  font-size: 20px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.dashboard-subtitle {
+  margin-top: 5px;
+
+  color: #5e6d80;
+
+  font-size: 10px;
+
+  letter-spacing: 3px;
+}
+
+.investigation-status {
+  padding: 9px 15px;
+
+  border: 1px solid #24422c;
+
+  border-radius: 6px;
+
+  color: #67d786;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  background: rgba(45, 130, 67, 0.08);
+}
+
+
+/* =========================================================
+   DASHBOARD INTRO
+   ========================================================= */
+
+.dashboard-intro {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 55px 0 30px;
+}
+
+.eyebrow {
+  margin-bottom: 12px;
+
+  color: #ff4b43;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 3px;
+}
+
+.dashboard-intro h1 {
+  max-width: 850px;
+
+  font-family: monospace;
+
+  font-size: clamp(20px, 3vw, 34px);
+
+  word-break: break-all;
+}
+
+.dashboard-intro p {
+  margin-top: 8px;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.risk-badge {
+  padding: 12px 22px;
+
+  border: 1px solid #71312d;
+
+  border-radius: 7px;
+
+  color: #ff645c;
+
+  background: rgba(255, 59, 48, 0.08);
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+   ========================================================= */
+
+.summary-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+
+  margin-bottom: 24px;
+}
+
+.summary-card {
+  min-height: 125px;
+
+  padding: 25px;
+
+  border: 1px solid #202c38;
+
+  border-radius: 12px;
+
+  background: #0a1017;
+
+  transition: 0.25s ease;
+}
+
+.summary-card:hover {
+  border-color: #344454;
+
+  transform: translateY(-2px);
+}
+
+.summary-card span {
+  display: block;
+
+  color: #718096;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.summary-card strong {
+  display: block;
+
+  margin-top: 22px;
+
+  font-size: 32px;
+}
+
+.summary-card .risk-text {
+  color: #ff5149;
+}
+
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.dashboard-panel {
+  padding: 30px;
+
+  border: 1px solid #202c38;
+
+  border-radius: 14px;
+
+  background: #090f16;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.dashboard-panel h2 {
+  margin-bottom: 25px;
+
+  font-size: 21px;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
+   GRAPH
+   ========================================================= */
+
+.graph-panel {
+  margin-bottom: 24px;
+}
+
+.panel-heading {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.panel-tag {
+  padding: 9px 13px;
+
+  border: 1px solid #263340;
+
+  border-radius: 6px;
+
+  color: #8291a4;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.graph-container {
+  height: 500px;
+
+  overflow: hidden;
+
+  border: 1px solid #202c38;
+
+  border-radius: 10px;
+
+  background: #05080c;
+}
+
+
+/* =========================================================
+   TWO COLUMN LAYOUT
+   ========================================================= */
+
+.two-column-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 24px;
+
+  margin-bottom: 24px;
+}
+
+
+/* =========================================================
+   SUSPICIOUS ACTIVITY
+   ========================================================= */
+
+.activity-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.activity-item {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 20px 0;
+
+  border-bottom: 1px solid #1b2530;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item h3 {
+  margin-bottom: 7px;
+
+  font-size: 14px;
+}
+
+.activity-item p {
+  color: #607087;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+.severity {
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  white-space: nowrap;
+}
+
+.severity.high {
+  color: #ff554c;
+}
+
+.severity.medium {
+  color: #e8a746;
+}
+
+
+/* =========================================================
+   VASP
+   ========================================================= */
+
+.vasp-card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 18px;
+
+  border: 1px solid #222e3a;
+
+  border-radius: 10px;
+
+  background: #0c131b;
+}
+
+.vasp-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #182331;
+
+  font-size: 22px;
+
+  font-weight: 900;
+}
+
+.vasp-info {
+  flex: 1;
+}
+
+.vasp-info h3 {
+  font-size: 16px;
+}
+
+.vasp-info p {
+  margin-top: 5px;
+
+  color: #617187;
+
+  font-size: 11px;
+}
+
+.confidence {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+}
+
+.confidence strong {
+  color: #66d47f;
+
+  font-size: 24px;
+}
+
+.confidence span {
+  margin-top: 4px;
+
+  color: #526174;
+
+  font-size: 8px;
+
+  letter-spacing: 1px;
+}
+
+.confidence-bar {
+  height: 7px;
+
+  margin-top: 25px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #1c2732;
+}
+
+.confidence-fill {
+  height: 100%;
+
+  border-radius: 10px;
+
+  background: #66d47f;
+}
+
+.panel-description {
+  margin-top: 18px;
+
+  color: #5f7085;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   CASES
+   ========================================================= */
+
+.case-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.case-item {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 22px 0;
+
+  border-bottom: 1px solid #1b2530;
+}
+
+.case-item:last-child {
+  border-bottom: none;
+}
+
+.case-item h3 {
+  font-family: monospace;
+
+  font-size: 14px;
+}
+
+.case-item p {
+  margin-top: 7px;
+
+  color: #607087;
+
+  font-size: 12px;
+}
+
+.case-item span {
+  color: #78889b;
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  text-align: right;
+}
+
+
+/* =========================================================
+   EVIDENCE
+   ========================================================= */
+
+.evidence-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 14px;
+}
+
+.evidence-card {
+  min-height: 115px;
+
+  padding: 20px;
+
+  border: 1px solid #202c38;
+
+  border-radius: 9px;
+
+  background: #0b121a;
+
+  transition: 0.2s ease;
+}
+
+.evidence-card:hover {
+  border-color: #ff3b32;
+
+  transform: translateY(-2px);
+}
+
+.evidence-card > span {
+  color: #ff4b43;
+
+  font-family: monospace;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+.evidence-card h3 {
+  margin-top: 15px;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+.evidence-card p {
+  margin-top: 10px;
+
+  color: #617187;
+
+  font-family: monospace;
+
+  font-size: 9px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   REPORT BUTTON
+   ========================================================= */
+
+.report-section {
+  margin-top: 30px;
+}
+
+.report-button {
+  width: 100%;
+
+  height: 65px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #ff3b32;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.report-button:hover {
+  background: #ff5149;
+
+  box-shadow:
+    0 15px 35px rgba(255, 59, 48, 0.2);
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   REACT FLOW
+   ========================================================= */
+
+.react-flow__controls {
+  border: 1px solid #283442 !important;
+
+  box-shadow: none !important;
+}
+
+.react-flow__controls-button {
+  background: #0d141c !important;
+
+  border-bottom: 1px solid #283442 !important;
+
+  fill: #aab5c2 !important;
+}
+
+.react-flow__minimap {
+  background: #0b1118 !important;
+
+  border: 1px solid #263340 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .two-column-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section h1 {
+    letter-spacing: -3px;
+  }
+
+  .landing-system {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .landing-header {
+    height: 65px;
+
+    padding: 0 20px;
+  }
+
+  .landing-logo {
+    font-size: 18px;
+  }
+
+  .hero-section {
+    padding: 45px 18px 70px;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+
+    letter-spacing: 3px;
+  }
+
+  .hero-section h1 {
+    font-size: 48px;
+
+    line-height: 0.92;
+
+    letter-spacing: -2px;
+  }
+
+  .hero-description {
+    margin-top: 28px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+  .wallet-form {
+    flex-direction: column;
+
+    padding: 6px;
+  }
+
+  .wallet-form input {
+    height: 55px;
+  }
+
+  .wallet-form button {
+    width: 100%;
+
+    height: 55px;
+  }
+
+  .dashboard-page {
+    padding: 0 18px 50px;
+  }
+
+  .dashboard-header {
+    min-height: 70px;
+  }
+
+  .dashboard-brand {
+    font-size: 17px;
+  }
+
+  .investigation-status {
+    display: none;
+  }
+
+  .dashboard-intro {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    padding-top: 35px;
+  }
+
+  .risk-badge {
+    align-self: flex-start;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-panel {
+    padding: 20px;
+  }
+
+  .graph-container {
+    height: 400px;
+  }
+
+  .panel-heading {
+    flex-direction: column;
+  }
+
+  .evidence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-item,
+  .case-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .case-item span {
+    text-align: left;
+  }
+
+  .loading-container {
+    padding: 30px 22px;
+  }
+
+  .loading-container h1 {
+    font-size: 32px;
+  }
+
+}

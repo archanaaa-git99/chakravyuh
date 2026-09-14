@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: .                     # Build the image using the Dockerfile in this folder
+    container_name: chakravyuh-backend
+    ports:
+      - "8000:8000"               # Maps your computer's port 8000 to the container's port 8000
+    volumes:
+      - ./backend:/app/backend        # Keeps your local backend code in sync with the container
+      - ./data:/app/data              # Folder where the SQLite database file will actually be saved
+    environment:
+      - PYTHONUNBUFFERED=1            # Makes logs show up immediately instead of being delayed
+      - DATABASE_URL=sqlite:///./data/chakravyuh.db   # Overrides the default path so the .db file is saved in the mounted ./data folder (and survives container restarts)
+    restart: unless-stopped
