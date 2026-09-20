@@ -8,87 +8,57 @@ import {
 
 import "@xyflow/react/dist/style.css";
 
-function TransactionGraph() {
-  const nodes = useMemo(
-    () => [
-      {
-        id: "wallet-a",
-        position: { x: 50, y: 180 },
-        data: {
-          label: (
-            <div>
-              <strong>WALLET A</strong>
-              <br />
-              <small>0x8A...42F</small>
-            </div>
-          ),
-        },
-        style: {
-          background: "#101923",
-          color: "#ffffff",
-          border: "2px solid #526477",
-          borderRadius: "10px",
-          padding: "12px",
-          width: 150,
-          textAlign: "center",
-        },
-      },
+// This component now takes real data from the backend as a prop,
+// instead of showing the same hardcoded fake wallets every time.
 
+function TransactionGraph({ data }) {
+  const nodes = useMemo(() => {
+    if (!data) return [];
+
+    const centerX = 400;
+    const centerY = 250;
+
+    const nodeList = [
       {
         id: "target",
-        position: { x: 280, y: 180 },
+        position: { x: centerX, y: centerY },
         data: {
           label: (
             <div>
               <strong>TARGET WALLET</strong>
               <br />
-              <small>INVESTIGATION TARGET</small>
+              <small>{data.wallet_address}</small>
             </div>
           ),
         },
         style: {
-          background: "#24100f",
+          background: data.has_overlap ? "#24100f" : "#101923",
           color: "#ffffff",
-          border: "2px solid #ff3b30",
+          border: data.has_overlap
+            ? "2px solid #ff3b30"
+            : "2px solid #63c77a",
           borderRadius: "10px",
           padding: "12px",
-          width: 170,
+          width: 200,
           textAlign: "center",
         },
       },
+    ];
 
-      {
-        id: "wallet-b",
-        position: { x: 540, y: 80 },
+    const activeCases = data.overlapping_active_cases || [];
+    activeCases.forEach((c, index) => {
+      nodeList.push({
+        id: `active-case-${c.id ?? index}`,
+        position: {
+          x: centerX + (index - (activeCases.length - 1) / 2) * 220,
+          y: centerY - 200,
+        },
         data: {
           label: (
             <div>
-              <strong>WALLET B</strong>
+              <strong>ACTIVE CASE</strong>
               <br />
-              <small>0x31...9AC</small>
-            </div>
-          ),
-        },
-        style: {
-          background: "#101923",
-          color: "#ffffff",
-          border: "2px solid #526477",
-          borderRadius: "10px",
-          padding: "12px",
-          width: 150,
-          textAlign: "center",
-        },
-      },
-
-      {
-        id: "suspicious",
-        position: { x: 540, y: 280 },
-        data: {
-          label: (
-            <div>
-              <strong>SUSPICIOUS</strong>
-              <br />
-              <small>0x91...77D</small>
+              <small>#{c.id ?? "unknown"}</small>
             </div>
           ),
         },
@@ -98,20 +68,53 @@ function TransactionGraph() {
           border: "2px solid #ff5147",
           borderRadius: "10px",
           padding: "12px",
-          width: 150,
+          width: 160,
           textAlign: "center",
         },
-      },
+      });
+    });
 
-      {
-        id: "exchange",
-        position: { x: 790, y: 280 },
+    const pastCases = data.overlapping_past_cases || [];
+    pastCases.forEach((c, index) => {
+      nodeList.push({
+        id: `past-case-${c.id ?? index}`,
+        position: {
+          x: centerX + (index - (pastCases.length - 1) / 2) * 220,
+          y: centerY + 200,
+        },
         data: {
           label: (
             <div>
-              <strong>VASP / EXCHANGE</strong>
+              <strong>PAST CASE</strong>
               <br />
-              <small>UNKNOWN</small>
+              <small>#{c.id ?? "unknown"}</small>
+            </div>
+          ),
+        },
+        style: {
+          background: "#101923",
+          color: "#ffffff",
+          border: "2px solid #8c98a6",
+          borderRadius: "10px",
+          padding: "12px",
+          width: 160,
+          textAlign: "center",
+        },
+      });
+    });
+
+    if (data.is_known_entity && data.known_entity_details) {
+      nodeList.push({
+        id: "known-entity",
+        position: { x: centerX + 320, y: centerY },
+        data: {
+          label: (
+            <div>
+              <strong>KNOWN ENTITY</strong>
+              <br />
+              <small>
+                {data.known_entity_details.name || "Flagged Entity"}
+              </small>
             </div>
           ),
         },
@@ -124,59 +127,69 @@ function TransactionGraph() {
           width: 170,
           textAlign: "center",
         },
-      },
-    ],
-    []
-  );
+      });
+    }
 
-  const edges = useMemo(
-    () => [
-      {
-        id: "edge-1",
-        source: "wallet-a",
-        target: "target",
-        animated: true,
-        style: {
-          stroke: "#8c98a6",
-          strokeWidth: 2,
-        },
-      },
+    return nodeList;
+  }, [data]);
 
-      {
-        id: "edge-2",
+  const edges = useMemo(() => {
+    if (!data) return [];
+
+    const edgeList = [];
+
+    const activeCases = data.overlapping_active_cases || [];
+    activeCases.forEach((c, index) => {
+      edgeList.push({
+        id: `edge-active-${c.id ?? index}`,
         source: "target",
-        target: "wallet-b",
+        target: `active-case-${c.id ?? index}`,
         animated: true,
-        style: {
-          stroke: "#8c98a6",
-          strokeWidth: 2,
-        },
-      },
+        style: { stroke: "#ff5147", strokeWidth: 2 },
+      });
+    });
 
-      {
-        id: "edge-3",
+    const pastCases = data.overlapping_past_cases || [];
+    pastCases.forEach((c, index) => {
+      edgeList.push({
+        id: `edge-past-${c.id ?? index}`,
         source: "target",
-        target: "suspicious",
+        target: `past-case-${c.id ?? index}`,
         animated: true,
-        style: {
-          stroke: "#ff5147",
-          strokeWidth: 3,
-        },
-      },
+        style: { stroke: "#8c98a6", strokeWidth: 2 },
+      });
+    });
 
-      {
-        id: "edge-4",
-        source: "suspicious",
-        target: "exchange",
+    if (data.is_known_entity && data.known_entity_details) {
+      edgeList.push({
+        id: "edge-known-entity",
+        source: "target",
+        target: "known-entity",
         animated: true,
-        style: {
-          stroke: "#63c77a",
-          strokeWidth: 2,
-        },
-      },
-    ],
-    []
-  );
+        style: { stroke: "#63c77a", strokeWidth: 2 },
+      });
+    }
+
+    return edgeList;
+  }, [data]);
+
+  if (!data || (!data.has_overlap && !data.is_known_entity)) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          background: "#070b10",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "#8c98a6",
+        }}
+      >
+        No connections found for this wallet — it does not overlap with any known cases.
+      </div>
+    );
+  }
 
   return (
     <div
@@ -190,9 +203,7 @@ function TransactionGraph() {
         nodes={nodes}
         edges={edges}
         fitView
-        fitViewOptions={{
-          padding: 0.25,
-        }}
+        fitViewOptions={{ padding: 0.25 }}
         nodesDraggable={true}
         nodesConnectable={false}
         elementsSelectable={true}
