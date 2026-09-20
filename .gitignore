@@ -41,3 +41,5 @@ chakravyuh.db
 .pytest_cache/
 .ruff_cache/
 *.egg-info/
+generated_reports/
+*.pdf
